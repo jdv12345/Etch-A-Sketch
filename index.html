@@ -17,7 +17,8 @@
                 const divRow = document.createElement('div');
                 divRow.textContent = '';
                 portion.appendChild(divRow);
-                divRow.classList.toggle('divRow');
+                divRow.classList.toggle('divRow','remove');
+                divRow.classList.toggle('remove');
             }
         }
 
@@ -27,6 +28,7 @@
                 divColumn.textContent = '';
                 section.appendChild(divColumn);
                 divColumn.classList.toggle('divColumn');
+                divColumn.classList.toggle('remove');
             }
         }
 
@@ -37,9 +39,6 @@
         const popUpButton = document.createElement('button');
         popUpButton.textContent = 'How many squares do you want in the grid?';
         mainDiv.appendChild(popUpButton);
-        popUpButton.addEventListener('click', (event) => {
-            let amount = prompt('How many squares do you want in the grid (no more than 100)');
-        })
         addRows(mainDiv,16);
         //Added 16 divs to each of those previously added
         const rowDiv = document.querySelectorAll('.divRow');
@@ -54,6 +53,21 @@
 
         const trail = document.querySelectorAll('.divColumn');
         trail.forEach(element => makeBlueTrail(element));
+        //Added button to ask for the proportions of a new grid
+        popUpButton.addEventListener('click', (event) => {
+            let amount = prompt('How many squares do you want in the grid (no more than 100)');
+            let size = (1/amount * 100);
+            const oldDiv = document.querySelectorAll('.remove');
+            oldDiv.forEach(element => element.remove());
+            addRows(mainDiv,amount);
+            const rowDiv = document.querySelectorAll('.divRow');
+            rowDiv.forEach(element => addColumns(element,amount));
+            rowDiv.forEach(element => element.style.height = `${size}%`);
+            columnDiv = document.querySelectorAll('.divColumn');
+            columnDiv.forEach(element => element.style.width = `${size}%`);
+            const trail = document.querySelectorAll('.divColumn');
+            trail.forEach(element => makeBlueTrail(element));
+        })
 
     </script>
         
