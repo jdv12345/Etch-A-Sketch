@@ -30,8 +30,16 @@
             }
         }
 
+
+
         //Added 16 divs to the main div
         const mainDiv = document.querySelector('#main');
+        const popUpButton = document.createElement('button');
+        popUpButton.textContent = 'How many squares do you want in the grid?';
+        mainDiv.appendChild(popUpButton);
+        popUpButton.addEventListener('click', (event) => {
+            let amount = prompt('How many squares do you want in the grid (no more than 100)');
+        })
         addRows(mainDiv,16);
         //Added 16 divs to each of those previously added
         const rowDiv = document.querySelectorAll('.divRow');
@@ -44,14 +52,6 @@
                 portion.classList.toggle('blue');
             });}
 
-            /*portion.addEventListener('mouseenter', (event) => {
-                if (portion.style.backgroundColor = 'blue') {
-                    portion.style.backgroundColor = 'white';
-                } else {
-                    portion.style.backgroundColor = 'blue';
-                };
-            })
-        }*/
         const trail = document.querySelectorAll('.divColumn');
         trail.forEach(element => makeBlueTrail(element));
 
