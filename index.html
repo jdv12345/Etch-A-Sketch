@@ -35,11 +35,25 @@
         addRows(mainDiv,16);
         //Added 16 divs to each of those previously added
         const rowDiv = document.querySelectorAll('.divRow');
-        rowDiv.forEach(element => addColumns(element,15));
+        rowDiv.forEach(element => addColumns(element,16));
         //Add event mouseover event listener to change background when over grid
-        const grid = document.querySelectorAll('.divColumn');
+        //const grid = document.querySelectorAll('.divColumn');
+        //Add a function to make div blue when mouseleaves and white when mouseenters
+        function makeBlueTrail (portion) {
+            portion.addEventListener('mouseleave', (event) => {
+                portion.classList.toggle('blue');
+            });}
 
-
+            /*portion.addEventListener('mouseenter', (event) => {
+                if (portion.style.backgroundColor = 'blue') {
+                    portion.style.backgroundColor = 'white';
+                } else {
+                    portion.style.backgroundColor = 'blue';
+                };
+            })
+        }*/
+        const trail = document.querySelectorAll('.divColumn');
+        trail.forEach(element => makeBlueTrail(element));
 
     </script>
         
