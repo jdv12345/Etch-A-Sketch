@@ -1,0 +1,23 @@
+body {
+    min-height: 100vh;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    
+
+}
+
+.divRow {
+    display: flex;
+    padding:0;
+    margin: 0;
+}
+
+.divColumn {
+    border: solid black 1px;
+    padding: 15px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="main">
+
+    </div>
+    <script>
+        //Function that creates the 16 rows
+        function addRows(portion,total) {
+            for (i = 0; i < total; i++) {
+                const divRow = document.createElement('div');
+                divRow.textContent = '';
+                portion.appendChild(divRow);
+                divRow.classList.toggle('divRow');
+            }
+        }
+
+        function addColumns(section,sum) {
+            for (i = 0; i < sum; i++) {
+                const divColumn = document.createElement('div');
+                divColumn.textContent = '';
+                section.appendChild(divColumn);
+                divColumn.classList.toggle('divColumn');
+            }
+        }
+
+        //Added 16 divs to the main div
+        const mainDiv = document.querySelector('#main');
+        addRows(mainDiv,16);
+        //Added 16 divs to each of those previously added
+        const rowDiv = document.querySelectorAll('.divRow');
+        rowDiv.forEach(element => addColumns(element,15));
+        //Add event mouseover event listener to change background when over grid
+        const grid = document.querySelectorAll('.divColumn');
+
+
+
+    </script>
+        
+</body>
+</html>
