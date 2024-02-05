@@ -45,28 +45,36 @@
         rowDiv.forEach(element => addColumns(element,16));
         //Add event mouseover event listener to change background when over grid
         //const grid = document.querySelectorAll('.divColumn');
-        //Add a function to make div blue when mouseleaves and white when mouseenters
-        function makeBlueTrail (portion) {
+        //Add a function to make div random color when mouseleaves and white when mouseenters
+        function makeRandomTrail (portion) {
             portion.addEventListener('mouseleave', (event) => {
-                portion.classList.toggle('blue');
+                let red = Math.floor(Math.random() * 255);
+                let green = Math.floor(Math.random() * 255);
+                let blue = Math.floor(Math.random() * 255);
+                portion.style.backgroundColor = `rgb(${red},${green},${blue})`;
             });}
 
         const trail = document.querySelectorAll('.divColumn');
-        trail.forEach(element => makeBlueTrail(element));
+        trail.forEach(element => makeRandomTrail(element));
         //Added button to ask for the proportions of a new grid
         popUpButton.addEventListener('click', (event) => {
             let amount = prompt('How many squares do you want in the grid (no more than 100)');
-            let size = (1/amount * 100);
-            const oldDiv = document.querySelectorAll('.remove');
-            oldDiv.forEach(element => element.remove());
-            addRows(mainDiv,amount);
-            const rowDiv = document.querySelectorAll('.divRow');
-            rowDiv.forEach(element => addColumns(element,amount));
-            rowDiv.forEach(element => element.style.height = `${size}%`);
-            columnDiv = document.querySelectorAll('.divColumn');
-            columnDiv.forEach(element => element.style.width = `${size}%`);
-            const trail = document.querySelectorAll('.divColumn');
-            trail.forEach(element => makeBlueTrail(element));
+            if ((amount > 100) || (amount == NaN)) {
+                alert('Please enter a number smaller than 100');
+            } else {
+                let size = (1/amount * 100);
+                const oldDiv = document.querySelectorAll('.remove');
+                 oldDiv.forEach(element => element.remove());
+                addRows(mainDiv,amount);
+                const rowDiv = document.querySelectorAll('.divRow');
+                rowDiv.forEach(element => addColumns(element,amount));
+                rowDiv.forEach(element => element.style.height = `${size}%`);
+                columnDiv = document.querySelectorAll('.divColumn');
+                columnDiv.forEach(element => element.style.width = `${size}%`);
+                const trail = document.querySelectorAll('.divColumn');
+                trail.forEach(element => makeRandomTrail(element)); 
+            }
+
         })
 
     </script>
